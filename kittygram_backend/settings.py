@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'cats.apps.CatsConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -30,6 +31,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'kittygram_backend.urls'
@@ -99,7 +102,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', 
+        'rest_framework.permissions.IsAuthenticated',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -110,3 +113,11 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 
 }
+
+###################################################
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+###################################################
